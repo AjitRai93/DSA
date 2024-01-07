@@ -38,6 +38,49 @@ public class DoublyLinkedList {
         }
     }
 
+    private static NewNode insertBeforeHeadInDLL(NewNode head, int value) {
+        NewNode newHead = new NewNode(value,head,null);
+        head.prev = newHead;
+        return newHead;
+    }
+
+    private static NewNode insertBeforeTailInDLL(NewNode head, int value) {
+        if(head.next == null){
+            return insertBeforeHeadInDLL(head,value);
+        }
+        NewNode temp = head;
+        while (temp.next!=null){
+            temp = temp.next;
+        }
+        NewNode prev = temp.prev;
+        NewNode beforeTailNode = new NewNode(value,temp,prev);
+        prev.next = beforeTailNode;
+        temp.prev = beforeTailNode;
+
+        return head;
+    }
+
+    private static NewNode insertBeforeKthInDLL(NewNode head, int value, int position) {
+        if(position == 0){
+            return insertBeforeHeadInDLL(head,value);
+        }
+        NewNode tempHeadNode = head;
+        int count = 0;
+        while (tempHeadNode.next !=null){
+            count++;
+            if(count == position){
+                break;
+            }
+            tempHeadNode = tempHeadNode.next;
+        }
+        NewNode prevNode = tempHeadNode.prev;
+        NewNode kthNode = new NewNode(value,tempHeadNode,prevNode);
+        prevNode.next = kthNode;
+        tempHeadNode.prev = kthNode;
+
+        return head;
+    }
+
 
     private static NewNode deleteHeadOfDoublyLinkedList(NewNode head) {
         if(head == null || head.next == null){
@@ -51,8 +94,6 @@ public class DoublyLinkedList {
     }
 
     private static NewNode deleteTailOfDoublyLinkedList(NewNode head) {
-        NewNode previous = head.prev;
-        NewNode next = head.next;
         if(head == null || head.next == null){
             return null;
         }
@@ -123,12 +164,27 @@ public class DoublyLinkedList {
         NewNode head = insertDoubleLinkedList(arr);
         traverseDoublyList(head);
 
-        //Delete head of a DoublyLinkedList
-         NewNode newHeadNode1 = deleteHeadOfDoublyLinkedList(head);
-         System.out.println("After Deletion from head new List:");
-         traverseDoublyList(newHeadNode1);
+        //Insert Node Before Head of DoublyLinkedList
+        NewNode newHeadNode = insertBeforeHeadInDLL(head,99);
+        System.out.println("Addition of New Node Before Head is: ");
+        traverseDoublyList(newHeadNode);
 
-         //Delete Tail of a DoublyLinkedList
+        //Insert Node Before Tail of DoublyLinkedList
+        NewNode newBeforeTailNode = insertBeforeTailInDLL(head,100);
+        System.out.println("Addition of New Node Before Tail is: ");
+        traverseDoublyList(newBeforeTailNode);
+
+        //Insert Node Before Kth Node of DoublyLinkedList
+        NewNode newBeforeKthNode = insertBeforeKthInDLL(head,88,1);
+        System.out.println("Addition of New Node Before Kth Position is: ");
+        traverseDoublyList(newBeforeKthNode);
+
+        //Delete head of a DoublyLinkedList
+        NewNode newHeadNode1 = deleteHeadOfDoublyLinkedList(head);
+        System.out.println("After Deletion from head new List:");
+        traverseDoublyList(newHeadNode1);
+
+        //Delete Tail of a DoublyLinkedList
         NewNode newHeadNode2 = deleteTailOfDoublyLinkedList(head);
         System.out.println("After Deletion from tail new List:");
         traverseDoublyList(newHeadNode2);
@@ -143,7 +199,5 @@ public class DoublyLinkedList {
         System.out.println("After Deletion of Any of Choice Node new List:");
         traverseDoublyList(head);
 
-
     }
-
 }
