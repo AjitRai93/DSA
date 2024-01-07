@@ -61,7 +61,7 @@ public class DoublyLinkedList {
     }
 
     private static NewNode insertBeforeKthInDLL(NewNode head, int value, int position) {
-        if(position == 0){
+        if(position == 1){
             return insertBeforeHeadInDLL(head,value);
         }
         NewNode tempHeadNode = head;
@@ -79,6 +79,14 @@ public class DoublyLinkedList {
         tempHeadNode.prev = kthNode;
 
         return head;
+    }
+
+    private static void insertBeforeAnyNodeInDLL(NewNode node, int value) {
+        NewNode prev = node.prev;
+        NewNode insertAnyNode =  new NewNode(value,node,prev);
+        prev.next = insertAnyNode;
+        node.prev = insertAnyNode;
+
     }
 
 
@@ -176,6 +184,11 @@ public class DoublyLinkedList {
 
         //Insert Node Before Kth Node of DoublyLinkedList
         NewNode newBeforeKthNode = insertBeforeKthInDLL(head,88,1);
+        System.out.println("Addition of New Node Before Kth Position is: ");
+        traverseDoublyList(newBeforeKthNode);
+
+        //Insert Node Before Any Node of DoublyLinkedList
+        insertBeforeAnyNodeInDLL(head.next,33);
         System.out.println("Addition of New Node Before Kth Position is: ");
         traverseDoublyList(newBeforeKthNode);
 
