@@ -1,4 +1,4 @@
-package OOPS.AbstractClasses;
+package OOPS.AbstractCls;
 
 public abstract class Animal {
     int noOfLegs;

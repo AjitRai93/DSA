@@ -1,4 +1,4 @@
-package OOPS.AbstractClasses.Interface;
+package OOPS.Interface;
 
 public class PhonePay {
     BankAPI bankAPI;

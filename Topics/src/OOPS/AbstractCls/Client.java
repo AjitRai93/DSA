@@ -1,4 +1,4 @@
-package OOPS.AbstractClasses;
+package OOPS.AbstractCls;
 
 public class Client {
     public static void main(String[] args) {

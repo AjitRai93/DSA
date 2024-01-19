@@ -1,4 +1,4 @@
-package OOPS.AbstractClasses.Interface;
+package OOPS.Interface;
 
 public class Client {
     public static void main(String[] args) {

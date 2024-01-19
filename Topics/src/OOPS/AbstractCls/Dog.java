@@ -1,4 +1,4 @@
-package OOPS.AbstractClasses;
+package OOPS.AbstractCls;
 
 public class Dog extends Animal{
     @Override

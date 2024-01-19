@@ -1,4 +1,4 @@
-package OOPS.AbstractClasses.Interface;
+package OOPS.Interface;
 
 public interface BankAPI {
     int getBalance(int accNumber);
