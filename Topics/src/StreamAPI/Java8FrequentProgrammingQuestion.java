@@ -20,7 +20,14 @@ public class Java8FrequentProgrammingQuestion {
                     new Student(10, "Shubham", 26, "Male", "Instrumentation Engineering", "Mumbai", 98, Arrays.asList("+912632646482", "+16734323229929")))
             .collect(Collectors.toList());
 
+    static List<Student> studentList1= Stream.of(new Student(1, "Rohit", 30, "Male", "Mechanical Engineering", "Mumbai", 122, Arrays.asList("+912632632782", "+1673434729929"),
+                    Map.of("maths",56,"chemistry",46,"physics",80)),
+            new Student(2, "Pulkit", 56, "Male", "Computer Engineering", "Delhi", 67, Arrays.asList("+912632632762", "+1673434723929"),
+                    Map.of("maths",86,"chemistry",92,"physics",50))).collect(Collectors.toList());
+
     public static void main(String[] args) {
+
+
         int numbers[] = {5,9,11,3,8,22,1,23,27};
         String str_arr[]={"java","python","golang","springboot","microservices"};
         String value = "ilovemyjavatechie";
@@ -43,6 +50,7 @@ public class Java8FrequentProgrammingQuestion {
         findMatchingNumberStartWith(numbers,2);
         getNthHighestSalary(salary,3);
         getAllEmployeesHavingNthHighestSalary(salary,3);
+        calculateSubjectAverages(studentList1);
 
         // 1. Find the list of students whose rank is in between 50 and 100
         List<Student> studentRankList = studentList.stream().filter(ranks -> ranks.getRank() > 50 && ranks.getRank() <100).toList();
@@ -87,10 +95,21 @@ public class Java8FrequentProgrammingQuestion {
         System.out.println("2nd Highest Rank: "+sortedByRank);
     }
 
+    private static Map<String, Double> calculateSubjectAverages(List<Student> studentList1) {
+
+        System.out.println("Average of all subjects from studentList"+ studentList1.stream()
+                .flatMap(student -> student.getMarks().entrySet().stream())
+                .collect(Collectors.groupingBy(
+                        Map.Entry::getKey, // Group by subject name
+                        Collectors.averagingDouble(Map.Entry::getValue)
+                )));
+        return null;
+    }
+
     private static void getAllEmployeesHavingNthHighestSalary(Map<String, Integer> salary, int nthSalary) {
         Map<Integer, List<String>> collect = salary.entrySet().stream()
                 .collect(Collectors.groupingBy(Map.Entry::getValue,
-                Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
+                        Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
         System.out.println("----->"+collect);
         Map.Entry<Integer, List<String>> salary_result = collect.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByKey())).collect(Collectors.toList()).get(nthSalary-1);
         System.out.println("Nth Highest Salary"+salary_result);
@@ -108,7 +127,7 @@ public class Java8FrequentProgrammingQuestion {
         List<String> stringList = Arrays.stream(numbers).boxed()
                 .map(s -> s + "")
                 .filter(s -> s.startsWith("2"))
-                .collect(Collectors.toList());
+                .toList();
         System.out.println("Matching numbers : "+stringList);
     }
 
@@ -144,12 +163,12 @@ public class Java8FrequentProgrammingQuestion {
                 .entrySet().stream()
                 .filter(x -> x.getValue() == 1)
                 .map(Map.Entry::getKey).collect(Collectors.toList());
-        System.out.println(uniqueElements);
+        System.out.println("Unique elements present in string are: "+uniqueElements);
     }
 
     static Map<String,Long> countFrequencyOfCharacterInString(String value){
         Map<String, Long> collect = Arrays.stream(value.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        System.out.println(collect);
+        System.out.println("Count of each character from String: "+value+" is "+collect);
         return collect;
     }
     private static void findAllDuplicateElements(String value) {
@@ -157,7 +176,7 @@ public class Java8FrequentProgrammingQuestion {
                 .entrySet().stream()
                 .filter(x -> x.getValue() > 1)
                 .map(Map.Entry::getKey).collect(Collectors.toList());
-        System.out.println(duplicateElements);
+        System.out.println("Duplicate elements from String is: "+duplicateElements);
     }
 
 }

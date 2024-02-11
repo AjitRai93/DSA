@@ -1,6 +1,7 @@
 package StreamAPI;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Student {
@@ -12,6 +13,9 @@ public class Student {
     private String city;
     private int rank;
     private List<String> contacts;
+    private Map<String,Integer> marks;
+
+
 
     public Student(int id, String firstName, int age, String gender, String dept, String city, int rank, List<String> contacts) {
         this.id = id;
@@ -22,6 +26,18 @@ public class Student {
         this.city = city;
         this.rank = rank;
         this.contacts = contacts;
+    }
+
+    public Student(int id, String firstName, int age, String gender, String dept, String city, int rank, List<String> contacts, Map<String,Integer>marks) {
+        this.id = id;
+        this.firstName = firstName;
+        this.age = age;
+        this.gender = gender;
+        this.dept = dept;
+        this.city = city;
+        this.rank = rank;
+        this.contacts = contacts;
+        this.marks = marks;
     }
 
     public int getId() {
@@ -86,6 +102,14 @@ public class Student {
 
     public void setContacts(List<String> contacts) {
         this.contacts = contacts;
+    }
+
+    public Map<String, Integer> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Map<String, Integer> marks) {
+        this.marks = marks;
     }
 
     @Override
