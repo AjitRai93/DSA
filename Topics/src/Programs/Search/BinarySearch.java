@@ -1,4 +1,4 @@
-package Programs;
+package Programs.Search;
 
 public class BinarySearch {
 
