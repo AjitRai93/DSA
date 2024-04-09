@@ -2,7 +2,7 @@ package Programs.Arrays;
 
 import java.util.Arrays;
 
-public class LeftRotateOptimisedApproach {
+public class LeftRotateNthPlacaOptimisedApproach {
 
     public static void main(String[] args) {
         int[] array = {9,5,2,4,7,3,11,26};
