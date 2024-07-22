@@ -1,5 +1,11 @@
 package DesignPatterns.creationalDesignPattern.FactoryDesignPattern;
 
+/*
+* Factory design Pattern
+* When there is a superclass and multiple subclass and if we want to get the object of the Subclasses
+* based on the input or requirement.
+* */
+
 public class ClientDriverClass {
     public static void main(String[] args) {
         Employee employee = EmployeeFactory.getEmployee("Android");
